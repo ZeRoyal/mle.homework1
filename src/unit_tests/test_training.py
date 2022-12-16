@@ -18,7 +18,7 @@ class TestTrain(unittest.TestCase):
         self.model = ReviewsModel()
 
     def test_train_model(self):
-        self.assertEqual(self.model.train(), True)
+        self.assertEqual(self.model.train(predict=False), True)
 
 
 if __name__ == "__main__":

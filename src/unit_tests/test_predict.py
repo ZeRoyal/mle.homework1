@@ -17,8 +17,8 @@ class TestPredict(unittest.TestCase):
     def setUp(self) -> None:
         self.model = Predictor()
 
-    def test_predict(self):
-        self.assertEqual(self.model.predict(), True)
+    # def test_predict(self):
+    #     self.assertEqual(self.model.predict(), True)
 
     def test_get_review_score(self):
         self.assertEqual(self.model.get_review_score('This was very bad product!'), True)

@@ -42,7 +42,7 @@ class ReviewsModel():
 
         self.y_test = pd.read_csv(
             self.config["SPLIT_DATA"]["y_test"], index_col=0)
-        print(self.y_train)
+
         self.y_train = self.y_train['target.1']
         self.y_test = self.y_test['target.1']
 

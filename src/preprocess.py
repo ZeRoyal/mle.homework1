@@ -67,7 +67,7 @@ class DataMaker():
         
         self.log.info("DataMaker is ready")
 
-    def get_data(self) -> bool:
+    def get_data(self, utest=False) -> bool:
         """
         Reading dataset
         """
@@ -80,7 +80,7 @@ class DataMaker():
 
         data_cleaned = data_cleaned.dropna()
 
-        data = self.get_reviews(data_cleaned, 10000)
+        data = self.get_reviews(data_cleaned, 10000) if not utest else self.get_reviews(data_cleaned, 10)
 
         tfidf_m, tfidf_d = self.get_tf(data['reviewText'], use_idf=True, max_df=0.90, min_df=10)
 
