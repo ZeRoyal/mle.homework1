@@ -1,0 +1,24 @@
+{
+    "X": [
+        {
+            "review": "The gameplay was awful, also the pvp system is unbalanced"
+        },
+        {
+            "review": "Casual game with nice graphic and new ideas"
+        },
+        {
+            "review": "Will never recommend it to my friends- a lot of crashes and bugs there!"
+        }
+    ],
+    "y": [
+        {
+            "target": "bad"
+        },
+        {
+            "target": "good"
+        },
+        {
+            "target": "bad"
+        }
+    ]
+}

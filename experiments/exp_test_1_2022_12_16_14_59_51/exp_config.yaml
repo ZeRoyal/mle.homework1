@@ -1,0 +1,5 @@
+model params:
+  path: C:\_Hobby\Nornikel\MLE\HW1\mle.homework1\experiments\model.sav
+tests: func
+X_test path: C:\_Hobby\Nornikel\MLE\HW1\mle.homework1\data\test\reviews_X.pkl
+y_test path: C:\_Hobby\Nornikel\MLE\HW1\mle.homework1\data\test\reviews_y.csv
