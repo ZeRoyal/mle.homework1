@@ -1,0 +1,14 @@
+stages:
+  preprocess:
+    cmd: python src/preprocess.py
+    deps:
+    - data/Video_Games_5.json
+    - src/preprocess.py
+    outs:
+    - data/Tf_Idf_m.pkl
+    - data/reviews_X_tfidf.pkl
+    - data/reviews_y.csv
+    - data/test/reviews_X.pkl
+    - data/test/reviews_y.csv
+    - data/train/reviews_X.pkl
+    - data/train/reviews_y.csv

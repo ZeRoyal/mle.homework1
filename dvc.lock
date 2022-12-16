@@ -1,0 +1,33 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python src/preprocess.py
+    deps:
+    - path: data/Video_Games_5.json
+      md5: 0e7f1dcff954876ba5fe77e750cf1a22
+      size: 466833438
+    - path: src/preprocess.py
+      md5: 4ad63ebdc5d7bb49b707bb488acfa867
+      size: 6732
+    outs:
+    - path: data/Tf_Idf_m.pkl
+      md5: 3e2f9d44ae7b5c25b1e47a906afa491c
+      size: 571547
+    - path: data/reviews_X_tfidf.pkl
+      md5: 3610e9eb2509c2017b3a39aa24ab1bf4
+      size: 28145403
+    - path: data/reviews_y.csv
+      md5: b8854b8f15d5bd6cf8c14f44c4f60ac1
+      size: 571417
+    - path: data/test/reviews_X.pkl
+      md5: bfbb2dee3b859a37b50dd18b9e08426e
+      size: 5716806
+    - path: data/test/reviews_y.csv
+      md5: 95a32bdc348ecfa01a153c45eaa4e305
+      size: 109307
+    - path: data/train/reviews_X.pkl
+      md5: b5b082c80f9a386e10e5be11bcacb1c5
+      size: 22428975
+    - path: data/train/reviews_y.csv
+      md5: 69088a5867056b5fd67dd38866086cd8
+      size: 453918
