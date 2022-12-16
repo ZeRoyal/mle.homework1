@@ -124,7 +124,7 @@ class Predictor():
         
         return True
     
-    def get_review_score(self, text: list) -> list:
+    def get_review_score(self, text: str) -> bool:
         """
         interactive review scoring
 
@@ -136,7 +136,7 @@ class Predictor():
         print('Model Predction')
         for m in range(0, 3):
             print('Model ({M}): {P:.1%}'.format(M=self.cat[m], P=self.model[m].predict_proba(test_new)[0][1]))
-        #return self.classifier.predict(text)
+        return True
 
 
 if __name__ == "__main__":
