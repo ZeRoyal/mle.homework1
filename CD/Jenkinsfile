@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKERHUB_CREDS = credentials('65f93f49-9c97-47dd-acb2-bbd30abd4355')
+        LC_ALL = "ru_RU.UTF-8"
+        LANG    = "ru_RU.UTF-8"
+        LANGUAGE = "ru_RU.UTF-8"
+    }
+
+    options {
+        timestamps()
+        skipDefaultCheckout(true)
+	}
+
+    stages {
+
+        stage('Login'){
+            steps {
+                bat encoding: 'UTF-8', script: '''
+                                                chcp 65001
+                                                docker login -u %DOCKERHUB_CREDS_USR% -p %DOCKERHUB_CREDS_PSW%
+                                                '''
+            }
+        }
+
+        stage('Pull image'){
+            steps{
+                bat encoding: 'UTF-8', script: '''
+                                                chcp 65001
+                                                docker pull zeroyal/mle.hw1:latest
+                                                '''
+            }
+        }
+
+        stage('Run container'){
+            steps{
+                bat encoding: 'UTF-8', script: '''
+                                                chcp 65001
+                                                docker run --name mle.hw1 -p 80:5556 -d zeroyal/mle.hw1:latest
+                                                '''
+            }
+        }
+
+	}
+
+    post {
+        always {
+            bat encoding: 'UTF-8', script: '''
+                    chcp 65001
+                    docker stop mle.hw1 && docker logout
+                    '''
+        }
+    }
+}
