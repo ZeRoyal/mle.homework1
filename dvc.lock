@@ -7,27 +7,27 @@ stages:
       md5: 0e7f1dcff954876ba5fe77e750cf1a22
       size: 466833438
     - path: src/preprocess.py
-      md5: 4ad63ebdc5d7bb49b707bb488acfa867
-      size: 6732
+      md5: 7e7d0346c86cf749ea246a590451503f
+      size: 6716
     outs:
     - path: data/Tf_Idf_m.pkl
-      md5: 3e2f9d44ae7b5c25b1e47a906afa491c
-      size: 571547
+      md5: 9cf26751c3693d73981cfdb5ad47a901
+      size: 576860
     - path: data/reviews_X_tfidf.pkl
-      md5: 3610e9eb2509c2017b3a39aa24ab1bf4
-      size: 28145403
+      md5: 536880c0fffb01bc1f3eb5caa17fb09c
+      size: 28479315
     - path: data/reviews_y.csv
-      md5: b8854b8f15d5bd6cf8c14f44c4f60ac1
-      size: 571417
+      md5: 06d11a107e1305190953f4df6c4b18b8
+      size: 571373
     - path: data/test/reviews_X.pkl
-      md5: bfbb2dee3b859a37b50dd18b9e08426e
-      size: 5716806
+      md5: 06e67bbc94440c92f7175e801bc4aace
+      size: 5662182
     - path: data/test/reviews_y.csv
-      md5: 95a32bdc348ecfa01a153c45eaa4e305
-      size: 109307
+      md5: 52dba47b731d07c920d9d994615e001e
+      size: 109321
     - path: data/train/reviews_X.pkl
-      md5: b5b082c80f9a386e10e5be11bcacb1c5
-      size: 22428975
+      md5: fdaf5ae0ff681fe9d53dc8d016b81908
+      size: 22817511
     - path: data/train/reviews_y.csv
-      md5: 69088a5867056b5fd67dd38866086cd8
-      size: 453918
+      md5: 67d44bd0e96c9f35e15cc42d547c23a8
+      size: 453860
