@@ -17,7 +17,7 @@ pipeline {
 
         stage('Login'){
             steps {
-                bat encoding: 'UTF-8', script: '''
+                sh encoding: 'UTF-8', script: '''
                                                 chcp 65001
                                                 docker login -u %DOCKERHUB_CREDS_USR% -p %DOCKERHUB_CREDS_PSW%
                                                 '''
@@ -26,7 +26,7 @@ pipeline {
 
         stage('Pull image'){
             steps{
-                bat encoding: 'UTF-8', script: '''
+                sh encoding: 'UTF-8', script: '''
                                                 chcp 65001
                                                 docker pull zeroyal/mle.hw1:latest
                                                 '''
@@ -35,7 +35,7 @@ pipeline {
 
         stage('Run container'){
             steps{
-                bat encoding: 'UTF-8', script: '''
+                sh encoding: 'UTF-8', script: '''
                                                 chcp 65001
                                                 docker run --name mle.hw1 -p 80:5556 -d zeroyal/mle.hw1:latest
                                                 '''
@@ -46,7 +46,7 @@ pipeline {
 
     post {
         always {
-            bat encoding: 'UTF-8', script: '''
+            sh encoding: 'UTF-8', script: '''
                     chcp 65001
                     docker stop mle.hw1 && docker logout
                     '''
