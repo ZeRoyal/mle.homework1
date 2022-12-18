@@ -1,4 +1,4 @@
 [core]
     remote = local
 ['remote "local"']
-    url = 'C:\_Hobby\Nornikel\MLE\HW1\dvc_bank'
+    url = 'C:\_Hobby\Nornikel\MLE\HW1\mle.homework1\.dvc\cache'
