@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDS = credentials('65f93f49-9c97-47dd-acb2-bbd30abd4355')
+        DOCKERHUB_CREDS = credentials('mle_hw1')
         LC_ALL = "ru_RU.UTF-8"
         LANG    = "ru_RU.UTF-8"
         LANGUAGE = "ru_RU.UTF-8"
