@@ -7,10 +7,6 @@ import pickle
 
 import numpy as np
 
-import matplotlib.pyplot as plt
-import matplotlib.cm as cm
-import matplotlib
-
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.decomposition import LatentDirichletAllocation,TruncatedSVD
 from sklearn.cluster import KMeans
