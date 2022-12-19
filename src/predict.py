@@ -32,8 +32,11 @@ class Predictor():
         self.cat = ['bad', 'neutral', 'good']
         self.config = configparser.ConfigParser()
         self.log = logger.get_logger(__name__)
-        self.config_path = os.path.join(os.getcwd(), 'config.ini')
+        self.config_path = os.path.join(os.getcwd(), 'config.ini') # ..
         self.config.read(self.config_path)
+        # print(self.config_path)
+        # for key in self.config.keys():  
+        #     print(key)
 
         self.parser = argparse.ArgumentParser(description="Predictor")
         self.parser.add_argument("-t",
@@ -60,6 +63,8 @@ class Predictor():
         try:
             with open(self.config["MODEL"]["path"], "rb") as f:
                 self.model = pickle.load(f)
+                print(self.config["MODEL"]["path"])
+                print(self.model)
         except FileNotFoundError:
             self.log.error(traceback.format_exc())
             sys.exit(1)
@@ -124,7 +129,7 @@ class Predictor():
         
         return True
     
-    def get_review_score(self, text: str) -> bool:
+    def get_review_score(self, text: str, from_web=False):
         """
         interactive review scoring
 
@@ -132,12 +137,18 @@ class Predictor():
         test_str = [text]
         test_new = self.tfidf_m.transform(test_str)
 
-        print('Review text: "{R}"\n'.format(R=test_str[0]))
-        print('Model Predction')
-        for m in range(0, 3):
-            print('Model ({M}): {P:.1%}'.format(M=self.cat[m], P=self.model[m].predict_proba(test_new)[0][1]))
-        return True
-
+        if not from_web:
+            print('Review text: "{R}"\n'.format(R=test_str[0]))
+            print('Model Predction')
+            for m in range(0, 3):
+                print('Model ({M}): {P:.1%}'.format(M=self.cat[m], P=self.model[m].predict_proba(test_new)[0][1]))
+            return True
+        else:
+            ret = {}
+            print(test_str)
+            for m in range(0, 3):
+                ret[self.cat[m]] = 'Model ({M}): {P:.1%}'.format(M=self.cat[m], P=self.model[m].predict_proba(test_new)[0][1])
+            return ret
 
 if __name__ == "__main__":
     predictor = Predictor()
