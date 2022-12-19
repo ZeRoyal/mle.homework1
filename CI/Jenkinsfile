@@ -87,6 +87,7 @@ pipeline {
                 dir("mle_1_homework"){
                     bat encoding: 'UTF-8', script: '''
                         chcp 65001
+						dir
                         docker-compose -f docker-compose.yml logs -t --tail 10
                     '''
                 }
