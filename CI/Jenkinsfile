@@ -84,11 +84,10 @@ pipeline {
 
         stage('Checkout coverage report'){
             steps{
-                dir("mle_1_homework"){
+                dir("mle.homework1"){
                     bat encoding: 'UTF-8', script: '''
                         chcp 65001
-						dir
-                        docker-compose -f docker-compose.yml logs -t --tail 10
+                        docker-compose logs -t --tail 10
                     '''
                 }
             }
