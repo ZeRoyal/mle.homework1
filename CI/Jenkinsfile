@@ -24,14 +24,6 @@ pipeline {
 					cd mle.homework1'''
             }
         } 
-
-        stage('Add storage') {
-            steps {
-                bat encoding: 'UTF-8', script: '''
-					pip install wget
-					python -m wget "https://www.googleapis.com/drive/v3/files/1H6FF3zKq5CLQ15Quzw5MpGBhGkEWkiud?alt=media&key=AIzaSyA7biXTLtzy1SUeRGA-e6CpX2YRrm9GCl0" -outfile "data/Video_Games_5.json"'''
-            }
-        }
 		
         stage('Checkout repo dir') {
             steps {

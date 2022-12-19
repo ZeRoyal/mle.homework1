@@ -2,7 +2,7 @@ version: '3.8'
 services:
    web:
        build: .
-       command: bash -c "python src/preprocess.py && python src/train.py && python src/predict.py -t func && coverage run src/unit_tests/test_preprocess.py && coverage run -a src/unit_tests/test_training.py && coverage run -a src/unit_tests/test_predict.py && coverage report -m"
+       command: bash -c "gdown 'https://www.googleapis.com/drive/v3/files/1H6FF3zKq5CLQ15Quzw5MpGBhGkEWkiud?alt=media&key=AIzaSyA7biXTLtzy1SUeRGA-e6CpX2YRrm9GCl0' -O 'data/Video_Games_5.json && python src/preprocess.py && python src/train.py && python src/predict.py -t func && coverage run src/unit_tests/test_preprocess.py && coverage run -a src/unit_tests/test_training.py && coverage run -a src/unit_tests/test_predict.py && coverage report -m"
        ports:
            - 8000:8000
        image: zeroyal/mle.hw1:latest
