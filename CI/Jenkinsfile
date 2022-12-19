@@ -23,8 +23,15 @@ pipeline {
                     git clone -b main https://github.com/ZeRoyal/mle.homework1.git
 					cd mle.homework1'''
             }
-        }
+        } 
 
+        stage('Add storage') {
+            steps {
+                bat encoding: 'UTF-8', script: '''
+					xcopy C:/_Hobby/Nornikel/MLE/HW1/mle.homework1/.dvc/cache ./.dvc/cache /O /X /E /H /K'''
+            }
+        }
+		
         stage('Checkout repo dir') {
             steps {
                 bat encoding: 'UTF-8', script: '''
