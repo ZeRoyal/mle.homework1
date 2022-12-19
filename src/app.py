@@ -40,8 +40,7 @@ def index():
     # if used POST method then we get text input from the request data
     # and predict class by classification model
     if request.method == 'POST':
-        for key in clf_model.config.keys():  
-            print(key)
+        input_text = request.form['text']
         page_context = {
             'input_text': input_text,
             'clf_result': '<br/>'.join(list(clf_model.get_review_score(input_text, from_web=True).values()))
