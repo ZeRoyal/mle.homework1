@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+
+   app:
+       image: zeroyal/mle_hw_extra:latest
+       command: bash -c "gdown 'https://www.googleapis.com/drive/v3/files/1H6FF3zKq5CLQ15Quzw5MpGBhGkEWkiud?alt=media&key=AIzaSyA7biXTLtzy1SUeRGA-e6CpX2YRrm9GCl0' -O 'data/Video_Games_5.json' && python src/preprocess.py && python src/train.py && flask run"
+       ports:
+           - 8000:8000
+       environment:
+        FLASK_APP: src/app.py
+        FLASK_RUN_HOST: 0.0.0.0
