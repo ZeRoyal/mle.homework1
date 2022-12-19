@@ -28,15 +28,15 @@ class Predictor():
 
     def __init__(self) -> None:
 
+        """
+        model constructor, getting data for prediction with config
+        """
         logger = Logger(SHOW_LOG)
         self.cat = ['bad', 'neutral', 'good']
         self.config = configparser.ConfigParser()
         self.log = logger.get_logger(__name__)
         self.config_path = os.path.join(os.getcwd(), 'config.ini') # ..
         self.config.read(self.config_path)
-        # print(self.config_path)
-        # for key in self.config.keys():  
-        #     print(key)
 
         self.parser = argparse.ArgumentParser(description="Predictor")
         self.parser.add_argument("-t",
@@ -59,7 +59,7 @@ class Predictor():
         with open(self.config["TF_IDF"]["Tf_Idf_m"], 'rb') as f:
             self.tfidf_m = pickle.load(f)
 
-
+        # catching errors for model load process
         try:
             with open(self.config["MODEL"]["path"], "rb") as f:
                 self.model = pickle.load(f)
@@ -73,7 +73,9 @@ class Predictor():
 
 
     def predict(self) -> bool:
-
+        """
+        Testing on special Test dataset. Different types of tests included
+        """
         args = self.parser.parse_args()
         
         if args.tests == "smoke":
@@ -101,7 +103,6 @@ class Predictor():
                         y = [y['target'] for y in data['y']]
                         print(X)
                         for text_ in X:
-                            #y_adj = np.array(y == self.cat[m])
                             self.get_review_score(text_)
                     except Exception:
                         self.log.error(traceback.format_exc())
@@ -131,18 +132,19 @@ class Predictor():
     
     def get_review_score(self, text: str, from_web=False):
         """
-        interactive review scoring
+        interactive review scoring ( using in web-app also)
 
         """
         test_str = [text]
         test_new = self.tfidf_m.transform(test_str)
-
+        # branch for part without web-app
         if not from_web:
             print('Review text: "{R}"\n'.format(R=test_str[0]))
             print('Model Predction')
             for m in range(0, 3):
                 print('Model ({M}): {P:.1%}'.format(M=self.cat[m], P=self.model[m].predict_proba(test_new)[0][1]))
             return True
+        # branch for web-app
         else:
             ret = {}
             print(test_str)

@@ -25,6 +25,11 @@ SHOW_LOG = True
 class ReviewsModel():
 
     def __init__(self) -> None:
+
+        """
+        constructor to init all needed data for training ( after it was preprocessed
+        in preprocess.py )
+        """
         logger = Logger(SHOW_LOG)
         self.config = configparser.ConfigParser()
         self.log = logger.get_logger(__name__)
@@ -52,6 +57,10 @@ class ReviewsModel():
 
 
     def train(self, predict=False) -> bool:
+        """
+        using tf-idf representation with 3 models for each category
+        to predict the probability of belonging to this class
+        """
         models = []
         cat = ['bad', 'neutral', 'good']
         try:
@@ -63,7 +72,7 @@ class ReviewsModel():
         except Exception:
             self.log.error(traceback.format_exc())
             sys.exit(1)
-
+        # if true we can see the result of prediction with our 3 models set
         if predict:
             y_gt = []
             print('Model Predction')
@@ -76,6 +85,9 @@ class ReviewsModel():
 
 
     def save_model(self, model, path: str, name: str, params: dict) -> bool:
+        """
+        saving model with all params
+        """
         self.config[name] = params
         os.remove(self.config_path)
         with open(self.config_path, 'w') as f:

@@ -35,7 +35,7 @@ class DataMaker():
 
     def __init__(self) -> None:
         """
-        paths to the data
+        paths to the data, data constructor init
         """
 
         logger = Logger(SHOW_LOG)
@@ -65,7 +65,7 @@ class DataMaker():
 
     def get_data(self, utest=False) -> bool:
         """
-        Reading dataset
+        Reading dataset and getting tf-idf form for data
         """
 
         data = pd.read_json(self.data_path, lines = True)
@@ -101,17 +101,20 @@ class DataMaker():
 
 
     def get_tf(self, data, use_idf, max_df=1.0, min_df=1, ngram_range=(1,1)):
+        """
+        Getting tf representation
+        """
         if use_idf:
             m = TfidfVectorizer(max_df=max_df, min_df=min_df, stop_words='english', ngram_range=ngram_range, tokenizer=utils.tokenize)
-        else:
-            m = CountVectorizer(max_df=max_df, min_df=min_df, stop_words='english', ngram_range=ngram_range, tokenizer=utils.tokenize)
-        
+                    
         d = m.fit_transform(data)
         return m, d
 
 
     def cat_y(self, y) -> str:
-
+        """
+        Help function to convert labels
+        """
         cat = ['bad','neutral','good']
 
         if y <= 2.:
@@ -122,7 +125,9 @@ class DataMaker():
             return cat[1]
 
     def get_reviews(self, data, n_samples) -> pd.DataFrame:
-
+        """
+        Get review texts in usefull form
+        """
         df = data.copy()
         df = df[df['reviewText'].apply(lambda x: len(x.split()) >= 45)]
         df['reviewText'] = df['reviewText'] + ' ' + df['summary']
@@ -133,7 +138,9 @@ class DataMaker():
         return df
 
     def split_data(self, test_size=TEST_SIZE) -> bool:
-
+        """
+        Split dataset for train and test parts
+        """
         self.get_data()
         try:
             with open(self.X_tfidf_path, 'rb') as f:
@@ -173,6 +180,9 @@ class DataMaker():
             os.path.isfile(self.test_path[1])
 
     def save_splitted_data(self, df, path, isCsv=True) -> bool:
+        """
+        Saving splitted data to csv and pickle files
+        """
         if isCsv:
             df = df.reset_index(drop=True)
             df.to_csv(path, index=True)
