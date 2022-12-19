@@ -28,7 +28,7 @@ pipeline {
         stage('Add storage') {
             steps {
                 bat encoding: 'UTF-8', script: '''
-					xcopy C:/_Hobby/Nornikel/MLE/HW1/mle.homework1/.dvc/cache ./.dvc/cache /O /X /E /H /K'''
+					xcopy C:/_Hobby/Nornikel/MLE/HW1/mle.homework1/.dvc/cache ./.dvc/cache /E'''
             }
         }
 		
