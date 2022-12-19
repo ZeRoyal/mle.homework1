@@ -28,7 +28,7 @@ pipeline {
         stage('Add storage') {
             steps {
                 bat encoding: 'UTF-8', script: '''
-					xcopy C:/_Hobby/Nornikel/MLE/HW1/mle.homework1/.dvc/cache ./.dvc/cache /E'''
+					wget "https://www.googleapis.com/drive/v3/files/1H6FF3zKq5CLQ15Quzw5MpGBhGkEWkiud?alt=media&key=AIzaSyA7biXTLtzy1SUeRGA-e6CpX2YRrm9GCl0" -outfile "data/Video_Games_5.json"'''
             }
         }
 		
